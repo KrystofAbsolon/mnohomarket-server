@@ -39,7 +39,6 @@ public class APIController {
             return ResponseEntity.ok(m);
         }
         catch(Exception e) {
-            e.printStackTrace();
             return ResponseEntity.notFound().build();
         }
     }
@@ -52,7 +51,6 @@ public class APIController {
             return ResponseEntity.ok(m);
         }
         catch(Exception e) {
-            e.printStackTrace();
             return ResponseEntity.notFound().build();
         }
     }
