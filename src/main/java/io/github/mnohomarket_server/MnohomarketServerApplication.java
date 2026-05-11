@@ -11,6 +11,7 @@ import io.github.mnohomarket_server.Objects.Market;
 public class MnohomarketServerApplication {
 
 	public static ArrayList<Market> markets = new ArrayList<>();
+	public static double credit = 5f;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MnohomarketServerApplication.class, args);

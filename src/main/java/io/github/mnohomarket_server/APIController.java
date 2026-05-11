@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -55,5 +56,20 @@ public class APIController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/credit")
+    public double getCredit() {
+        return MnohomarketServerApplication.credit;
+    }
+
+    @PostMapping("/credit")
+    public void changeCredit(@RequestBody Float amount) {
+        double result = Math.round((MnohomarketServerApplication.credit + amount) * 100.0) / 100.0;
+        if(result <= 0)
+            MnohomarketServerApplication.credit = 0;
+        else
+            MnohomarketServerApplication.credit = result;
+    }
+    
     
 }
