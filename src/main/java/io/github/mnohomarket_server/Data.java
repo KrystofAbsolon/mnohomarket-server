@@ -7,7 +7,7 @@ import io.github.mnohomarket_server.Objects.Market;
 public class Data {
 
     private static final ArrayList<Market> markets = new ArrayList<>();
-	private static double credit = 5f;
+	private static double credit = 0f;
 
     public static void loadMarkets() {
 		markets.add(new Market(
