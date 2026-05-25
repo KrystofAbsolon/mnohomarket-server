@@ -23,18 +23,18 @@ public class APIController {
 
     @GetMapping("/markets")
     public ArrayList<Market> getMethodName() {
-        return MnohomarketServerApplication.markets;
+        return Data.getMarkets();
     }
 
     @GetMapping("/market")
     public Market getMethodName(@RequestParam("m") int m) {
-        return MnohomarketServerApplication.markets.get(m - 1);
+        return Data.getMarkets().get(m - 1);
     }
     
     @PostMapping("/betyes/{id}")
     public ResponseEntity<Market> incrementYes(@PathVariable("id") Integer id) {  
         try {    
-            Market m = MnohomarketServerApplication.markets.get(id - 1);
+            Market m = Data.getMarkets().get(id - 1);
             m.YesBets += 1;
             return ResponseEntity.ok(m);
         }
@@ -46,7 +46,7 @@ public class APIController {
     @PostMapping("/betno/{id}")
     public ResponseEntity<Market> incrementNo(@PathVariable("id") Integer id) {  
         try {    
-            Market m = MnohomarketServerApplication.markets.get(id - 1);
+            Market m = Data.getMarkets().get(id - 1);
             m.NoBets += 1;
             return ResponseEntity.ok(m);
         }
@@ -57,16 +57,16 @@ public class APIController {
 
     @GetMapping("/credit")
     public double getCredit() {
-        return MnohomarketServerApplication.credit;
+        return Data.getCredit();
     }
 
     @PostMapping("/credit")
     public void changeCredit(@RequestBody Float amount) {
-        double result = Math.round((MnohomarketServerApplication.credit + amount) * 100.0) / 100.0;
+        double result = Math.round((Data.getCredit() + amount) * 100.0) / 100.0;
         if(result <= 0)
-            MnohomarketServerApplication.credit = 0;
+            Data.setCredit(0);
         else
-            MnohomarketServerApplication.credit = result;
+            Data.setCredit(result);
     }
     
     
